@@ -6,8 +6,10 @@ from ctypes import windll
 
 # List of websites to block
 BLOCKED_SITES = [
-    "example.com",
-    "www.example.com"
+    "instagram.com",
+    "x.com",
+    "www.espncricinfo.com",
+    "www.formula1.com"
 ]
 
 # Path to the hosts file
