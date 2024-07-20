@@ -24,7 +24,7 @@ BLOCK_STRING = "127.0.0.1"
 # Function to check if Zoom is running
 def is_zoom_running():
     for proc in psutil.process_iter(['name']):
-        if proc.info['name'].lower() == 'zoom.exe':
+        if proc.info['name'].lower() == 'Zoom.exe':
             return True
     return False
 
