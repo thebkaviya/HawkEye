@@ -27,7 +27,7 @@ BLOCK_STRING = "127.0.0.1"
 # Function to check if Zoom is running
 def is_zoom_running():
     for proc in psutil.process_iter(['name']):
-        if proc.info['name'].lower() == 'Zoom.exe':
+        if proc.info['name'].lower() == 'zoom.exe':
             return True
             print("Zoom running")
     return False
@@ -38,6 +38,8 @@ def backup_hosts_file():
     if not os.path.exists(BACKUP_HOSTS_FILE_PATH):
         os.rename(HOSTS_FILE_PATH, BACKUP_HOSTS_FILE_PATH)
         print("Hosts file backed up.")
+
+# backup_hosts_file()
 
 # Function to restore the hosts file from backup
 def restore_hosts_file():
