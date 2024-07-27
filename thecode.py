@@ -11,9 +11,12 @@ BLOCKED_SITES = [
     "www.espncricinfo.com",
     "www.formula1.com"
 ]
+
 ablank = []
 if BLOCKED_SITES != ablank:
     print("Sites Entered")
+
+written_to_hosts = False
 
 # Path to the hosts file
 HOSTS_FILE_PATH = r"C:\Windows\System32\drivers\etc\hosts"
@@ -39,7 +42,6 @@ def backup_hosts_file():
         os.rename(HOSTS_FILE_PATH, BACKUP_HOSTS_FILE_PATH)
         print("Hosts file backed up.")
 
-# backup_hosts_file()
 
 # Function to restore the hosts file from backup
 def restore_hosts_file():
@@ -49,10 +51,11 @@ def restore_hosts_file():
 
 # Function to block websites by updating the hosts file
 def block_websites():
-    with open(HOSTS_FILE_PATH, 'a') as hosts_file:
-        for site in BLOCKED_SITES:
-            hosts_file.write(f"{BLOCK_STRING} {site}\n")
-        print("Hosts file edited & updated. Blocking active.")
+    if written_to_hosts != True:
+        with open(HOSTS_FILE_PATH, 'a') as hosts_file:
+            for site in BLOCKED_SITES:
+                hosts_file.write(f"{BLOCK_STRING} {site}\n")
+            print("Hosts file edited & updated. Blocking active.")
 
 # Function to check for and manage site blocking
 def manage_site_blocking():
@@ -89,7 +92,7 @@ def start_background_thread():
     background_thread = threading.Thread(target=run_in_background, daemon=True)
     background_thread.start()
     background_thread.join()
-    print("Thread strated")
+    print("Thread started.")
 
 if __name__ == "__main__":
     start_background_thread()
