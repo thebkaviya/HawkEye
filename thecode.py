@@ -6,8 +6,8 @@ from ctypes import windll
 
 # List of websites to block
 BLOCKED_SITES = [
-    "instagram.com",
-    "x.com",
+    "www.instagram.com",
+    "ww.x.com",
     "www.espncricinfo.com",
     "www.formula1.com"
 ]
@@ -69,12 +69,13 @@ def manage_site_blocking():
                 backup_hosts_file()
             block_websites()
         else:
+            print("Zoom not running.")
             if os.path.exists(BACKUP_HOSTS_FILE_PATH):
                 restore_hosts_file()
         
         print("---------------")
-        time.sleep(60)  # Check every minute
-        p
+        time.sleep(10)  # Check every minute
+        
 
 # Function to run the blocking manager in a separate thread
 def run_in_background():
@@ -88,6 +89,7 @@ def start_background_thread():
     background_thread = threading.Thread(target=run_in_background, daemon=True)
     background_thread.start()
     background_thread.join()
+    print("Thread strated")
 
 if __name__ == "__main__":
     start_background_thread()
