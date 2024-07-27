@@ -46,6 +46,7 @@ def backup_hosts_file():
 # Function to restore the hosts file from backup
 def restore_hosts_file():
     if os.path.exists(BACKUP_HOSTS_FILE_PATH):
+        os.remove(HOSTS_FILE_PATH)
         os.rename(BACKUP_HOSTS_FILE_PATH, HOSTS_FILE_PATH)
         print("Hosts file restored. Blocking inactive.")
 
