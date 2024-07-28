@@ -12,9 +12,10 @@ BLOCKED_SITES = [
     "www.formula1.com"
 ]
 
-ablank = []
+'''ablank = []
 if BLOCKED_SITES != ablank:
     print("Sites Entered")
+'''
 
 written_to_hosts = False
 
@@ -32,7 +33,7 @@ def is_zoom_running():
     for proc in psutil.process_iter(['name']):
         if proc.info['name'].lower() == 'zoom.exe':
             return True
-            print("Zoom running")
+            # print("Zoom running")
     return False
     
 
@@ -40,7 +41,7 @@ def is_zoom_running():
 def backup_hosts_file():
     if not os.path.exists(BACKUP_HOSTS_FILE_PATH):
         os.rename(HOSTS_FILE_PATH, BACKUP_HOSTS_FILE_PATH)
-        print("Hosts file backed up.")
+        # print("Hosts file backed up.")
 
 
 # Function to restore the hosts file from backup
@@ -48,7 +49,7 @@ def restore_hosts_file():
     if os.path.exists(BACKUP_HOSTS_FILE_PATH):
         os.remove(HOSTS_FILE_PATH)
         os.rename(BACKUP_HOSTS_FILE_PATH, HOSTS_FILE_PATH)
-        print("Hosts file restored. Blocking inactive.")
+        # print("Hosts file restored. Blocking inactive.")
 
 # Function to block websites by updating the hosts file
 def block_websites():
@@ -56,7 +57,7 @@ def block_websites():
         with open(HOSTS_FILE_PATH, 'a') as hosts_file:
             for site in BLOCKED_SITES:
                 hosts_file.write(f"{BLOCK_STRING} {site}\n")
-            print("Hosts file edited & updated. Blocking active.")
+            # print("Hosts file edited & updated. Blocking active.")
 
 # Function to check for and manage site blocking
 def manage_site_blocking():
@@ -77,7 +78,7 @@ def manage_site_blocking():
             if os.path.exists(BACKUP_HOSTS_FILE_PATH):
                 restore_hosts_file()
         
-        print("---------------")
+        # print("---------------")
         time.sleep(10)  # Check every minute
         
 
@@ -93,7 +94,7 @@ def start_background_thread():
     background_thread = threading.Thread(target=run_in_background, daemon=True)
     background_thread.start()
     background_thread.join()
-    print("Thread started.")
+    # print("Thread started.")
 
 if __name__ == "__main__":
     start_background_thread()
